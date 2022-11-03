@@ -1,38 +1,38 @@
 import PT from 'prop-types';
-import React from 'react';
+import { useCallback, useEffect } from 'react';
 import s from './Modal.module.css';
 
-export default class Modal extends React.Component {
-  componentDidMount() {
-    window.addEventListener('keydown', this.onKeydown);
-  }
+export default function Modal({ imgUrl, toggleModal }) {
+  const onKeydown = useCallback(
+    e => {
+      if (e.code === 'Escape') {
+        toggleModal();
+      }
+    },
+    [toggleModal]
+  );
 
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.onKeydown);
-  }
+  useEffect(() => {
+    window.addEventListener('keydown', onKeydown);
 
-  onKeydown = e => {
-    if (e.code === 'Escape') {
-      this.props.toggleModal();
-    }
-  };
-  onClikOverlay = e => {
+    return () => {
+      window.removeEventListener('keydown', onKeydown);
+    };
+  }, [onKeydown]);
+
+  const onClikOverlay = e => {
     if (e.target !== e.currentTarget) return;
 
-    this.props.toggleModal();
+    toggleModal();
   };
 
-  render() {
-    const { imgUrl } = this.props;
-
-    return (
-      <div onClick={this.onClikOverlay} className={s.overlay}>
-        <div className={s.modal}>
-          <img src={imgUrl} alt="img" />
-        </div>
+  return (
+    <div onClick={onClikOverlay} className={s.overlay}>
+      <div className={s.modal}>
+        <img src={imgUrl} alt="img" />
       </div>
-    );
-  }
+    </div>
+  );
 }
 Modal.propTypes = {
   imgUrl: PT.string.isRequired,
