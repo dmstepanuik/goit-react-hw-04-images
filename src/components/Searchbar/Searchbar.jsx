@@ -1,7 +1,9 @@
+import PT from 'prop-types';
 import { BsSearch } from 'react-icons/bs';
 import s from './Searchbar.module.css';
 
 export default function Searchbar({ onChangeSearch }) {
+  
   const onSubmit = e => {
     e.preventDefault();
     const form = e.target;
@@ -12,7 +14,7 @@ export default function Searchbar({ onChangeSearch }) {
     <header className={s.searchbar}>
       <form className={s.searchForm} onSubmit={onSubmit}>
         <button type="submit" className={s.searchFormButton}>
-          <BsSearch/>
+          <BsSearch />
           <span className={s.searchFormButtonLabel}>Search</span>
         </button>
 
@@ -28,3 +30,7 @@ export default function Searchbar({ onChangeSearch }) {
     </header>
   );
 }
+Searchbar.propTypes = {
+  onChangeSearch: PT.func.isRequired,
+
+};

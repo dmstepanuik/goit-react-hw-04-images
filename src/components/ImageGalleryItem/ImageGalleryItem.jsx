@@ -1,7 +1,14 @@
+import PT from 'prop-types';
 import React from 'react';
 import s from './ImageGalleryItem.module.css';
 
-export default function ImageGalleryItem({ id, webformatURL, largeImageURL, onClickCard }) {
+export default function ImageGalleryItem({
+  id,
+  webformatURL,
+  largeImageURL,
+  onClickCard,
+}) {
+  
   return (
     <li className={s.imageGalleryItem}>
       <img
@@ -13,3 +20,9 @@ export default function ImageGalleryItem({ id, webformatURL, largeImageURL, onCl
     </li>
   );
 }
+ImageGalleryItem.propTypes = {
+  id: PT.number.isRequired,
+  webformatURL: PT.string.isRequired,
+  largeImageURL: PT.string.isRequired,
+  onClickCard: PT.func.isRequired,
+};

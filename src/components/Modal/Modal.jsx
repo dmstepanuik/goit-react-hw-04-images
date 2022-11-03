@@ -1,3 +1,4 @@
+import PT from 'prop-types';
 import React from 'react';
 import s from './Modal.module.css';
 
@@ -23,6 +24,7 @@ export default class Modal extends React.Component {
 
   render() {
     const { imgUrl } = this.props;
+
     return (
       <div onClick={this.onClikOverlay} className={s.overlay}>
         <div className={s.modal}>
@@ -32,3 +34,7 @@ export default class Modal extends React.Component {
     );
   }
 }
+Modal.propTypes = {
+  imgUrl: PT.string.isRequired,
+  toggleModal: PT.func.isRequired,
+};
