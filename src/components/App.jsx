@@ -11,6 +11,7 @@ import Loader from './Loader/Loader';
 import s from './App.module.css';
 
 export function App() {
+  
   const [items, setItems] = useState([]);
   const [showedModal, setShowedModal] = useState(false);
   const [modalImg, setModalImg] = useState('');
